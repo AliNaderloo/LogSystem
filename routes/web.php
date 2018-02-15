@@ -10,7 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/NewLog', 'MainController@newLog')->name('newLog');	
 
-Route::get('/', function () {
-    return view('welcome');
-});
