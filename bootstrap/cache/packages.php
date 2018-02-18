@@ -20,4 +20,26 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'yajra/laravel-datatables-oracle' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
+    ),
+  ),
+  'morilog/jalali' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Morilog\\Jalali\\JalaliServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'jDate' => 'Morilog\\Jalali\\Facades\\jDate',
+    ),
+  ),
 );
