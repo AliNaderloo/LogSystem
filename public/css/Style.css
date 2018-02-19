@@ -1,5 +1,32 @@
-
+@font-face {
+  font-family: 'BYekan';
+  src: url('/fonts/BYekan.eot?#') format('eot'),
+  url('/fonts/BYekan.ttf') format('truetype'),
+  url('/fonts/BYekan.woff') format('woff');
+}
+*{
+	font-family: 'BYekan';
+}
+i{
+ font-size: 18px;
+}
 #logsTable{
 	direction: rtl;
 	text-align: right;
+}
+#fieldLogsTable{
+	direction: rtl;
+	text-align: right;
+}
+div.dataTables_length {
+    display: none;
+}
+.btnDetails{
+	background-color: salmon;
+	border-radius: 2px;
+	height: 25px;
+	width: 40px;
+	color: white;
+	border:0px;
+	cursor: pointer;
 }

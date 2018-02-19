@@ -26,16 +26,73 @@
 			</tr>
 		</thead>
 	</table>
+	<!-- Remodal -->
+	<div class="remodal" data-remodal-id="modalFlds">
+		<button data-remodal-action="close" class="remodal-close"></button>
+		<table id="fieldLogsTable" class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>شماره</th>
+					<th>نام فیلد</th>
+					<th>مقدار قبلی</th>
+					<th>مقدار جدید</th>
+				</tr>
+			</thead>
+		</table>
+		
+	</div>
+	<!-- End Remodal -->
 </body>
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/remodal.min.js') }}"></script>
 <script type="text/javascript">
 	$( document ).ready(function() {
+		
 		$(document).on('click', '.btnDetails', function(e) {
-			alert('sss');
+			var id = $(this).attr('name');
+			var fieldLogsTable =  $('#fieldLogsTable').DataTable({
+				"destroy": true,
+				"processing": true,
+				"serverSide": true,
+				"dataType"  : "json",
+				'ajax'       :"/DataTableFields/"+id,
+				"columns": [
+				{ "data": "DT_Row_Index" },
+				{ "data": "fld" },
+				{ "data": "old" },
+				{ "data": "new" }
+				],
+				"language": {
+					"sEmptyTable":     "هیچ داده ای در جدول وجود ندارد",
+					"sInfo":           "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
+					"sInfoEmpty":      "نمایش 0 تا 0 از 0 رکورد",
+					"sInfoFiltered":   "(فیلتر شده از _MAX_ رکورد)",
+					"sInfoPostFix":    "",
+					"sInfoThousands":  ",",
+					"sLengthMenu":     "نمایش _MENU_ رکورد",
+					"sLoadingRecords": "در حال بارگزاری...",
+					"sProcessing":     "در حال پردازش...",
+					"sSearch":         "جستجو:",
+					"sZeroRecords":    "رکوردی با این مشخصات پیدا نشد",
+					"oPaginate": {
+						"sFirst":    "ابتدا",
+						"sLast":     "انتها",
+						"sNext":     "بعدی",
+						"sPrevious": "قبلی"
+					},
+					"oAria": {
+						"sSortAscending":  ": فعال سازی نمایش به صورت صعودی",
+						"sSortDescending": ": فعال سازی نمایش به صورت نزولی"
+					}
+				},
+			});
+			var inst = $('[data-remodal-id=modalFlds]').remodal();
+			inst.open();
 		});
 		var logsTable =  $('#logsTable').DataTable({
+			"pageResize": true,
+			"pageLength": 13,
 			"processing": true,
 			"serverSide": true,
 			"dataType"  : "json",
@@ -48,7 +105,7 @@
 						return_data.push({
 							'DT_Row_Index' : json.data[i].DT_Row_Index,
 							'fld_Table_Name' : json.data[i].fld_Table_Name,
-							'fld_Changed_Items' : "<button name ="+'"'+json.data[i].id+'"'+"class ="+'"'+"btnDetails"+'"'+">لیست تغییرات</button>",
+							'fld_Changed_Items' : "<button name ="+'"'+json.data[i].id+'"'+"class ="+'"'+"btnDetails"+'"'+"><i class="+'"'+"fas fa-align-right"+'"'+"></i></button>",
 							'title': json.data[i].id,
 							'fld_User_Id'  : json.data[i].fld_User_Id,
 							'created_at' : json.data[i].created_at
@@ -88,6 +145,8 @@
 				}
 			},
 		}); 
+
+
 	});
 </script>
 </html>

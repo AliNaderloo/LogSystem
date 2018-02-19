@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/NewLog', 'MainController@newLog')->name('newLog');	
+Route::get('/NewLog/{json}', 'MainController@newLog')->name('newLog');	
 Route::get('/DataTable', 'MainController@DataTable')->name('newLog');	
 Route::get('/', 'MainController@allLog')->name('allLog');	
-
+Route::get('/DataTableFields/{id}', 'MainController@fieldsLog')->name('fieldsLog');
