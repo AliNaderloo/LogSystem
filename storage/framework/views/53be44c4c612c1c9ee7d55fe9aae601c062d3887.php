@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>سیستم لاگ شرکت چاپار</title>
+	<title>سیستم لاگ شرکت چاپار|لاگ های یوزر <?php echo e($tableId); ?></title>
 	<!-- Style -->
 	<link rel="stylesheet" href="<?php echo e(asset('css/Style.css')); ?>">
 	<!-- Font Awesome -->
@@ -93,6 +93,7 @@
 			inst.open();
 		});
 		var logsTable =  $('#logsTable').DataTable({
+			aaSorting: [[6, 'desc']],
 			"pageResize": true,
 			"pageLength": 13,
 			"processing": true,
@@ -100,7 +101,7 @@
 			"dataType"  : "json",
 			'ajax'       : {
 				"type"   : "GET",
-				"url"    : "/DataTableAll",
+				"url"    : "/DataTable/table/<?php echo e($tableId); ?>",
 				"dataSrc": function (json) {
 					var return_data = new Array();
 					for(var i=0;i< json.data.length; i++){
@@ -113,17 +114,11 @@
 							'created_at' : json.data[i].created_at,
 							'fld_Ip':json.data[i].fld_Ip,
 							'fld_Browser':json.data[i].fld_Browser
-
 						})
 					}
 					return return_data;
 				}
 			},
-			"columnDefs": [ {
-				"targets": [0,5],
-				"orderable": false
-			} ],
-			aaSorting: [[6, 'desc']],
 			"columns": [
 			{ "data": "DT_Row_Index" },
 			{ "data": "fld_User_Id" },

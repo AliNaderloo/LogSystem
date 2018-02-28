@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>سیستم لاگ شرکت چاپار</title>
+	<title>سیستم لاگ شرکت چاپار|لاگ های یوزر <?php echo e($userId); ?></title>
 	<!-- Style -->
 	<link rel="stylesheet" href="<?php echo e(asset('css/Style.css')); ?>">
 	<!-- Font Awesome -->
@@ -100,7 +100,7 @@
 			"dataType"  : "json",
 			'ajax'       : {
 				"type"   : "GET",
-				"url"    : "/DataTableAll",
+				"url"    : "/DataTable/user/<?php echo e($userId); ?>",
 				"dataSrc": function (json) {
 					var return_data = new Array();
 					for(var i=0;i< json.data.length; i++){
@@ -113,16 +113,11 @@
 							'created_at' : json.data[i].created_at,
 							'fld_Ip':json.data[i].fld_Ip,
 							'fld_Browser':json.data[i].fld_Browser
-
 						})
 					}
 					return return_data;
 				}
 			},
-			"columnDefs": [ {
-				"targets": [0,5],
-				"orderable": false
-			} ],
 			aaSorting: [[6, 'desc']],
 			"columns": [
 			{ "data": "DT_Row_Index" },
@@ -156,6 +151,10 @@
 					"sSortDescending": ": فعال سازی نمایش به صورت نزولی"
 				}
 			},
+			"columnDefs": [ {
+				"targets": [0,5],
+				"orderable": false
+			} ]
 		}); 
 
 

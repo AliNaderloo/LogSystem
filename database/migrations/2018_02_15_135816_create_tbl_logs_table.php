@@ -13,10 +13,13 @@ class CreateTblLogsTable extends Migration
      */
     public function up()
     {
-            Schema::create('tbl_logs', function (Blueprint $table) {
+        Schema::create('tbl_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->text('fld_User_Id');
+            $table->text('fld_User_Name');
             $table->text('fld_Table_Name');
+            $table->text('fld_Ip');
+            $table->text('fld_Browser');
             $table->text('fld_Changed_Items');
             $table->timestamps();
         });

@@ -20,6 +20,8 @@
 			<tr>
 				<th>شماره</th>
 				<th>توسط</th>
+				<th>آیپی</th>
+				<th>مرورگر</th>
 				<th>جدول</th>
 				<th>تغییرات</th>
 				<th>تاریخ</th>
@@ -98,7 +100,7 @@
 			"dataType"  : "json",
 			'ajax'       : {
 				"type"   : "GET",
-				"url"    : "/DataTable",
+				"url"    : "/DataTableAll",
 				"dataSrc": function (json) {
 					var return_data = new Array();
 					for(var i=0;i< json.data.length; i++){
@@ -108,15 +110,25 @@
 							'fld_Changed_Items' : "<button name ="+'"'+json.data[i].id+'"'+"class ="+'"'+"btnDetails"+'"'+"><i class="+'"'+"fas fa-align-right"+'"'+"></i></button>",
 							'title': json.data[i].id,
 							'fld_User_Id'  : json.data[i].fld_User_Id,
-							'created_at' : json.data[i].created_at
+							'created_at' : json.data[i].created_at,
+							'fld_Ip':json.data[i].fld_Ip,
+							'fld_Browser':json.data[i].fld_Browser
+
 						})
 					}
 					return return_data;
 				}
 			},
+			"columnDefs": [ {
+				"targets": [0,5],
+				"orderable": false
+			} ],
+			aaSorting: [[6, 'desc']],
 			"columns": [
 			{ "data": "DT_Row_Index" },
 			{ "data": "fld_User_Id" },
+			{ "data": "fld_Ip" },
+			{ "data": "fld_Browser" },
 			{ "data": "fld_Table_Name" },
 			{ "data": "fld_Changed_Items" },
 			{ "data": "created_at" }

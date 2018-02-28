@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>سیستم لاگ شرکت چاپار</title>
+	<title>سیستم لاگ شرکت چاپار|لاگ های یوزر {{$userId}}</title>
 	<!-- Style -->
-	<link rel="stylesheet" href="<?php echo e(asset('css/Style.css')); ?>">
+	<link rel="stylesheet" href="{{ asset('css/Style.css') }}">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<!-- Data Tables -->
-	<link rel="stylesheet" href="<?php echo e(asset('css/jquery.dataTables.min.css')); ?>">
+	<link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>" >
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" >
 	<!-- Remodal -->
-	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/remodal.css')); ?>">
-	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/remodal-default-theme.min.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/remodal.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/remodal-default-theme.min.css')}}">
 </head>
 <body>
 	<table id="logsTable" class="display" cellspacing="0" width="100%">
@@ -45,9 +45,9 @@
 	</div>
 	<!-- End Remodal -->
 </body>
-<script type="text/javascript" src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(asset('js/jquery.dataTables.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(asset('js/remodal.min.js')); ?>"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/remodal.min.js') }}"></script>
 <script type="text/javascript">
 	$( document ).ready(function() {
 		
@@ -100,7 +100,7 @@
 			"dataType"  : "json",
 			'ajax'       : {
 				"type"   : "GET",
-				"url"    : "/DataTableAll",
+				"url"    : "/DataTable/user/{{$userId}}",
 				"dataSrc": function (json) {
 					var return_data = new Array();
 					for(var i=0;i< json.data.length; i++){
@@ -113,16 +113,11 @@
 							'created_at' : json.data[i].created_at,
 							'fld_Ip':json.data[i].fld_Ip,
 							'fld_Browser':json.data[i].fld_Browser
-
 						})
 					}
 					return return_data;
 				}
 			},
-			"columnDefs": [ {
-				"targets": [0,5],
-				"orderable": false
-			} ],
 			aaSorting: [[6, 'desc']],
 			"columns": [
 			{ "data": "DT_Row_Index" },
@@ -156,6 +151,10 @@
 					"sSortDescending": ": فعال سازی نمایش به صورت نزولی"
 				}
 			},
+			"columnDefs": [ {
+				"targets": [0,5],
+				"orderable": false
+			} ]
 		}); 
 
 
